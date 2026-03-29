@@ -1,0 +1,1208 @@
+/* Folha de estilos da landing PromptDocente (extraída do frame Figma 12:24) */
+/* Tipografia base: Inter (próxima a Geist usada no arquivo) */
+:root {
+  /* Cor de fundo geral da página */
+  --color-bg: #fafafa;
+  /* Azul primário dos botões e destaques */
+  --color-primary: #3f5ec2;
+  /* Azul claro para badges e ícones */
+  --color-primary-soft: #dbe6f6;
+  /* Texto do selo “Ensino médio” */
+  --color-badge-text: #14185a;
+  /* Cinza do parágrafo principal */
+  --color-body: #575752;
+  /* Cinza médio de navegação */
+  --color-muted: #616161;
+  /* Cinza de rodapé e textos secundários */
+  --color-footer: #525252;
+  /* Cinza de subtítulos de seção */
+  --color-section: #525252;
+  /* Cinza FAQ intro */
+  --color-faq-intro: #626262;
+  /* Texto escuro em botões outline */
+  --color-dark: #071625;
+  /* Borda suave de cartões e botões */
+  --color-border: #e8e8e8;
+  /* Borda dos itens de módulo */
+  --color-border-strong: #828282;
+  /* Fundo interno dos itens de lista do módulo */
+  --color-module-bg: #fafafa;
+  /* Fundo do FAQ e cartões claros */
+  --color-card-faq: #fefdfd;
+  /* Fundo do CTA final */
+  --color-cta-bg: #fdfbfc;
+  /* Sombra padrão “SOMBRA PAINEIS” do Figma */
+  --shadow-panel: 3px 3px 4px rgba(0, 0, 0, 0.1);
+  /* Sombra das tags de literatura */
+  --shadow-tag: 0px 2px 3px rgba(0, 0, 0, 0.25);
+  /* Largura máxima do conteúdo central */
+  --max-width: 1134px;
+  /* Família tipográfica principal */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* Rolagem suave entre âncoras internas */
+html {
+  scroll-behavior: smooth; /* Navegação por #secao com animação */
+}
+
+/* Reset leve e box-sizing global */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Inclui borda e padding no cálculo da largura */
+}
+
+/* Remove margens padrão do body */
+body {
+  margin: 0; /* Zera margem externa */
+  font-family: var(--font-sans); /* Aplica fonte principal */
+  background: var(--color-bg); /* Fundo cinza claríssimo */
+  color: #000; /* Texto padrão preto */
+  line-height: 1.5; /* Entrelinha legível */
+}
+
+/* Remove sublinhado padrão de links */
+a {
+  color: inherit; /* Herda cor do contexto */
+  text-decoration: none; /* Sem sublinhado */
+}
+
+/* Botões sem estilo nativo extra */
+button {
+  font: inherit; /* Herda fonte do body */
+  background: none; /* Remove fundo padrão */
+  border: none; /* Remove borda padrão */
+  cursor: pointer; /* Indica interatividade */
+  padding: 0; /* Zera padding interno */
+}
+
+/* Imagens responsivas por padrão */
+img {
+  max-width: 100%; /* Não estoura o container */
+  height: auto; /* Mantém proporção */
+  display: block; /* Remove espaço inferior inline */
+}
+
+/* Classe utilitária de acessibilidade: esconde visualmente mantendo leitores */
+.visually-hidden {
+  position: absolute; /* Retira do fluxo */
+  width: 1px; /* Largura mínima */
+  height: 1px; /* Altura mínima */
+  padding: 0; /* Sem padding */
+  margin: -1px; /* Compensa para screen readers */
+  overflow: hidden; /* Esconde overflow */
+  clip: rect(0, 0, 0, 0); /* Recorte antigo */
+  white-space: nowrap; /* Uma linha */
+  border: 0; /* Sem borda */
+}
+
+/* Wrapper da página com posição para blobs */
+.page {
+  position: relative; /* Referência para absolutos internos */
+  min-height: 100vh; /* Ocupa altura mínima da viewport */
+  overflow-x: hidden; /* Evita scroll horizontal por decorações */
+}
+
+/* Container das manchas decorativas */
+.page__blobs {
+  pointer-events: none; /* Não intercepta cliques */
+  position: absolute; /* Sobrepõe o fundo */
+  inset: 0; /* Estica em todos os lados */
+  z-index: 0; /* Atrás do conteúdo */
+}
+
+/* Estilo base das manchas borradas */
+.page__blob {
+  position: absolute; /* Posicionamento livre */
+  border-radius: 174px; /* Bordas bem arredondadas */
+  filter: blur(75px); /* Desfoque forte */
+  opacity: 0.55; /* Transparência */
+}
+
+/* Mancha direita (azul) */
+.page__blob--right {
+  width: 473px; /* Largura aproximada do Figma */
+  height: 398px; /* Altura */
+  right: -120px; /* Parcialmente fora da tela */
+  top: -23px; /* Alinhamento vertical */
+  background: rgba(63, 94, 194, 0.57); /* Azul semitransparente */
+}
+
+/* Mancha esquerda */
+.page__blob--left {
+  width: 325px; /* Largura */
+  height: 319px; /* Altura */
+  left: -119px; /* Parcialmente fora */
+  top: 286px; /* Posição vertical */
+  background: rgba(63, 94, 194, 0.53); /* Tom levemente diferente */
+}
+
+/* Conteúdo principal acima dos blobs */
+.page__inner {
+  position: relative; /* Empilha acima */
+  z-index: 1; /* Camada superior */
+  max-width: var(--max-width); /* Limita largura */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  padding: 60px 24px 0; /* Espaço externo superior e laterais */
+}
+
+/* Barra de topo */
+.header {
+  display: flex; /* Flexbox horizontal */
+  align-items: center; /* Alinha verticalmente ao centro */
+  justify-content: space-between; /* Espaça logo, nav e ícone */
+  gap: 16px; /* Espaço mínimo entre itens */
+  padding: 0 8px; /* Respiro interno */
+  margin-bottom: 48px; /* Separa do herói */
+  background: rgba(250, 250, 250, 0.52); /* Fundo levemente translúcido */
+  border-radius: 157px; /* Formato “pílula” longa */
+  min-height: 40px; /* Altura mínima da barra */
+}
+
+/* Grupo marca + texto (link para o topo da página) */
+.header__brand {
+  display: flex; /* Alinha ícone e texto */
+  align-items: center; /* Centro vertical */
+  gap: 0; /* Sem gap extra; padding no texto */
+  text-decoration: none; /* Remove sublinhado do link */
+  color: inherit; /* Mantém cor do header */
+  cursor: pointer; /* Indica clicável */
+}
+
+.header__brand:focus-visible {
+  outline: 2px solid var(--color-primary); /* Foco visível para teclado */
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* Área do ícone circular */
+.header__logo-wrap {
+  display: flex; /* Centraliza o ícone */
+}
+
+/* Círculo azul do logo */
+.header__logo-icon {
+  width: 40px; /* Diâmetro */
+  height: 40px;
+  background: #3f5ec2; /* Azul sólido */
+  border-radius: 23px; /* Arredondamento do frame */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Recorta o ícone */
+}
+
+/* Imagem dentro do círculo */
+.header__logo-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain; /* Mantém proporção */
+}
+
+/* Título textual ao lado do círculo */
+.header__title {
+  margin: 0; /* Remove margem de parágrafo */
+  padding: 10px; /* Espaço interno do Figma */
+  font-size: 14px; /* Tamanho do texto */
+  font-weight: 500; /* Medium */
+}
+
+/* Parte em negrito do nome */
+.header__title-strong {
+  font-weight: 600; /* SemiBold */
+}
+
+/* Navegação central */
+.header__nav {
+  display: flex; /* Links em linha */
+  gap: 5px; /* Espaço entre pills */
+  flex-wrap: wrap; /* Quebra em telas estreitas */
+}
+
+/* Cada link como pílula branca */
+.header__nav-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 37px;
+  padding: 0 13px;
+  background: #fff;
+  border-radius: 17px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-muted);
+  transition: background 0.2s ease; /* Hover suave */
+}
+
+/* Hover dos links */
+.header__nav-pill:hover {
+  background: var(--color-primary-soft); /* Leve destaque */
+}
+
+/* Área do botão de configurações + popover */
+.header__settings-wrap {
+  position: relative; /* Ancora o painel flutuante */
+  flex-shrink: 0;
+}
+
+/* Botão de configurações */
+.header__settings {
+  width: 31px;
+  height: 31px;
+  background: #fff;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.header__settings:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Painel “preferências” (demo) */
+.header__popover {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  width: min(280px, 85vw);
+  padding: 16px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: var(--shadow-panel), 0 12px 40px rgba(0, 0, 0, 0.12);
+  z-index: 50;
+  text-align: left;
+}
+
+.header__popover-text {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--color-body);
+}
+
+.header__popover-close {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.header__popover-close:hover {
+  filter: brightness(0.97);
+}
+
+.header__popover-close:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Ícone dentro do botão */
+.header__settings-img {
+  width: 15px;
+  height: 15px;
+}
+
+/* Seção herói */
+.hero {
+  margin-bottom: 96px; /* Espaço até próxima seção */
+}
+
+/* Selo “Ensino médio…” */
+.hero__badge {
+  display: inline-flex; /* Largura conforme conteúdo */
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 10px;
+  margin-bottom: 48px; /* Distância até o grid */
+  background: var(--color-primary-soft);
+  border-radius: 49px;
+}
+
+/* Texto do selo */
+.hero__badge-text {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  color: var(--color-badge-text);
+  white-space: nowrap; /* Mantém uma linha em desktop */
+}
+
+/* Grid duas colunas: texto + mockup */
+.hero__grid {
+  display: grid; /* Grade CSS */
+  grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+  gap: 40px; /* Espaço entre colunas */
+  align-items: start; /* Alinha ao topo */
+  margin-bottom: 40px;
+}
+
+/* Coluna de texto */
+.hero__copy {
+  max-width: 546px; /* Limita largura do bloco de texto */
+}
+
+/* Título principal */
+.hero__title {
+  margin: 0 0 17px; /* Margem inferior */
+  font-size: clamp(40px, 5vw, 68px); /* Responsivo entre 40 e 68px */
+  font-weight: 600;
+  line-height: 1.05; /* Entrelinhas compacta */
+}
+
+/* Cada linha do título em bloco */
+.hero__title-line {
+  display: block; /* Quebra linha */
+}
+
+/* Palavra com gradiente */
+.hero__title-gradient {
+  background: linear-gradient(180deg, #3d64c4 75.48%, #1ecfd5 98.08%);
+  -webkit-background-clip: text; /* Recorte do gradiente no texto (WebKit) */
+  background-clip: text; /* Padrão */
+  color: transparent; /* Deixa ver o gradiente */
+}
+
+/* Parágrafo do herói */
+.hero__desc {
+  margin: 0;
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--color-body);
+}
+
+/* Mockup à direita */
+.hero__mockup {
+  position: relative; /* Para posicionar overlays */
+  border-radius: 28px;
+  overflow: hidden; /* Arredonda conteúdo interno */
+  min-height: 350px;
+  background: #fff; /* Fallback atrás da imagem */
+}
+
+/* Imagem base do mockup */
+.hero__mockup-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Preenche o cartão */
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* Fica atrás dos textos sobrepostos */
+}
+
+/* Barra superior do “navegador” */
+.hero__mockup-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
+
+/* Bolinhas estilo janela (fallback visual) */
+.hero__dot {
+  position: absolute;
+  top: 14px; /* Abaixo da barra */
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.hero__dot--1 {
+  left: 12px;
+  background: #ff5f57; /* Vermelho */
+}
+
+.hero__dot--2 {
+  left: 28px;
+  background: #febc2e; /* Amarelo */
+}
+
+.hero__dot--3 {
+  left: 44px;
+  background: #28c840; /* Verde */
+}
+
+/* Rótulos absolutos sobre o mockup (posições aproximadas do Dev Mode) */
+.hero__mockup-label {
+  position: absolute;
+  top: 11%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  z-index: 2;
+}
+
+.hero__mockup-h1 {
+  position: absolute;
+  top: 19%;
+  left: 3.5%;
+  right: 24%;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #3b5ccc;
+  z-index: 2;
+}
+
+.hero__mockup-p1 {
+  position: absolute;
+  top: 27%;
+  left: 3.5%;
+  right: 44%;
+  margin: 0;
+  font-size: 13px;
+  color: #777;
+  z-index: 2;
+}
+
+.hero__mockup-h2 {
+  position: absolute;
+  top: 39%;
+  left: 3.5%;
+  right: 48%;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #3b5ccc;
+  z-index: 2;
+}
+
+.hero__mockup-p2 {
+  position: absolute;
+  top: 47%;
+  left: 3.5%;
+  right: 48%;
+  margin: 0;
+  font-size: 13px;
+  color: #777;
+  z-index: 2;
+}
+
+/* Linha de CTAs */
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Botão base */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 54px;
+  padding: 13px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px); /* Leve elevação */
+}
+
+.btn:active {
+  transform: translateY(0); /* Feedback ao clicar */
+  filter: brightness(0.96);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* Botão primário azul */
+.btn--primary {
+  background: var(--color-primary);
+  color: #fafafa;
+  min-width: 266px;
+}
+
+/* Botão secundário com borda */
+.btn--outline {
+  border: 1px solid var(--color-border);
+  background: #fff;
+  color: var(--color-dark);
+  border-radius: 17px;
+  min-width: 113px;
+}
+
+/* Ícone dentro do botão */
+.btn__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Faixa de quatro cartões */
+.features {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* Quatro colunas */
+  gap: 18px;
+  margin-bottom: 110px;
+}
+
+/* Cartão individual */
+.feature-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: var(--shadow-panel);
+  padding: 10px;
+  min-height: 124px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+
+/* Cartão usado como link (destaques) */
+.feature-card--link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card--link:hover {
+  transform: translateY(-3px);
+  box-shadow: 4px 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.feature-card--link:active {
+  transform: translateY(-1px);
+}
+
+.feature-card--link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* Círculo lavanda do ícone */
+.feature-card__icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 15px;
+  background: var(--color-primary-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Variação mais arredondada */
+.feature-card__icon-wrap--round {
+  border-radius: 38px;
+}
+
+/* Ícone */
+.feature-card__icon {
+  object-fit: contain;
+}
+
+/* Texto do cartão */
+.feature-card__text {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  line-height: 28px;
+}
+
+.feature-card__text--medium {
+  font-weight: 500;
+}
+
+/* Seção módulos */
+.modules {
+  margin-bottom: 80px;
+}
+
+/* Cabeçalho de seção reutilizável */
+.section-head {
+  text-align: center;
+  max-width: 1013px;
+  margin: 0 auto 40px;
+}
+
+.section-head--narrow {
+  max-width: 787px;
+}
+
+/* Rótulo pequeno em caixa alta */
+.section-head__eyebrow {
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2.4px;
+  color: var(--color-primary);
+}
+
+.section-head__eyebrow--lg {
+  font-size: 14px;
+  letter-spacing: 2.8px;
+}
+
+/* Título de seção */
+.section-head__title {
+  margin: 0 0 16px;
+  font-size: 32px;
+  font-weight: 600;
+  color: #000;
+}
+
+.section-head__title--36 {
+  font-size: 36px;
+  line-height: 25px;
+}
+
+/* Subtítulo */
+.section-head__sub {
+  margin: 0 auto;
+  max-width: 751px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-section);
+}
+
+.section-head__sub--faq {
+  font-weight: 400;
+  color: var(--color-faq-intro);
+  max-width: 744px;
+}
+
+/* Grade dos três módulos */
+.modules__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+}
+
+/* Cartão de módulo */
+.module-card {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: var(--shadow-panel);
+  padding: 10px;
+  min-height: 491px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Cabeçalho do cartão (título + ícone) */
+.module-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 0;
+  margin-bottom: 38px;
+}
+
+.module-card__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 2.2px;
+}
+
+.module-card__head-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.module-card__icon-bubble {
+  width: 48px;
+  height: 48px;
+  border-radius: 15px;
+  background: var(--color-primary-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Lista de bullets */
+.module-card__list {
+  list-style: none;
+  margin: 0 0 54px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1; /* Empurra o CTA para baixo */
+}
+
+/* Item com borda */
+.module-card__item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px;
+  background: var(--color-module-bg);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 18px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 25px;
+}
+
+.module-card__item--tall {
+  min-height: 90px;
+}
+
+.module-card__check {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* CTA preto no rodapé do cartão (botão: abre fluxo demo) */
+.module-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  height: 47px;
+  border-radius: 12px;
+  background: #000;
+  color: #fafafa;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  margin-top: auto;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.module-card__cta:hover {
+  opacity: 0.92; /* Feedback hover */
+}
+
+.module-card__cta:active {
+  transform: scale(0.99);
+}
+
+.module-card__cta:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* Destaque rápido após rolar até o cartão via CTA azul */
+.module-card--highlight {
+  animation: card-highlight 1.1s ease;
+}
+
+@keyframes card-highlight {
+  0% {
+    box-shadow: var(--shadow-panel);
+  }
+  35% {
+    box-shadow: 0 0 0 3px var(--color-primary), var(--shadow-panel);
+  }
+  100% {
+    box-shadow: var(--shadow-panel);
+  }
+}
+
+/* Bloco literatura */
+.literature {
+  margin-bottom: 80px;
+}
+
+.literature__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 86px;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 26px;
+  box-shadow: var(--shadow-panel);
+  padding: 24px 32px;
+  min-height: 159px;
+}
+
+.literature__eyebrow {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  color: var(--color-primary);
+}
+
+.literature__text {
+  margin: 0;
+  max-width: 454px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* Nuvem de tags alinhada à direita (comportamento do frame no Figma) */
+.literature__tags {
+  display: flex; /* Flexbox para quebrar linhas */
+  flex: 1; /* Ocupa espaço restante ao lado do texto */
+  flex-wrap: wrap; /* Permite várias linhas de pills */
+  flex-direction: row; /* Direção horizontal */
+  justify-content: flex-end; /* Alinha à direita */
+  gap: 6px; /* Espaço entre tags */
+  max-width: 446px; /* Largura máxima do bloco de tags */
+}
+
+.literature__tags .tag {
+  display: inline-block; /* Pills com largura intrínseca */
+}
+
+/* Tag individual */
+.tag {
+  padding: 6px 15px;
+  background: var(--color-bg);
+  border-radius: 20px;
+  font-size: 12px;
+  box-shadow: var(--shadow-tag);
+  white-space: nowrap;
+}
+
+/* Depoimentos */
+.testimonial {
+  margin: 0 auto 80px;
+  max-width: 815px;
+  text-align: center;
+}
+
+.testimonial__card {
+  background: #fff;
+  border-radius: 26px;
+  box-shadow: var(--shadow-panel);
+  padding: 24px 24px 32px;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+}
+
+.testimonial__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 52px;
+  object-fit: cover;
+}
+
+.testimonial__quote {
+  margin: 0;
+  max-width: 619px;
+}
+
+.testimonial__quote-text {
+  margin: 0;
+  font-size: 17px;
+  line-height: 25px;
+  letter-spacing: 0.51px;
+}
+
+.testimonial__name {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.45px;
+}
+
+.testimonial__role {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--color-footer);
+  letter-spacing: 0.36px;
+}
+
+/* Dots do carrossel */
+.testimonial__dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonial__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 24px;
+  background: #e4e4e4;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.testimonial__dot--active {
+  width: 22px;
+  height: 9px;
+  background: var(--color-primary);
+}
+
+/* Navegação setas */
+.testimonial__nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.testimonial__arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 23px;
+  background: var(--color-bg);
+  box-shadow: var(--shadow-panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.testimonial__arrow:hover {
+  transform: scale(1.05);
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.testimonial__arrow:active {
+  transform: scale(0.98);
+}
+
+.testimonial__arrow:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.testimonial__arrow--prev img {
+  transform: rotate(180deg); /* Espelha a seta */
+}
+
+/* FAQ */
+.faq {
+  max-width: 893px;
+  margin: 0 auto 80px;
+}
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: var(--shadow-panel);
+  border-radius: 20px;
+}
+
+.faq__item {
+  background: var(--color-card-faq);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.faq__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 64px;
+  padding: 10px 20px;
+  text-align: left;
+}
+
+.faq__question {
+  font-size: 16px;
+  font-weight: 600;
+  flex: 1;
+}
+
+.faq__plus {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.faq__trigger--open .faq__plus {
+  transform: rotate(45deg); /* “+” vira “x” leve */
+}
+
+.faq__panel {
+  padding: 0 20px 16px;
+  font-size: 15px;
+  color: var(--color-body);
+  line-height: 1.5;
+}
+
+.faq__panel[hidden] {
+  display: none !important; /* Garante oculto quando hidden */
+}
+
+/* CTA final */
+.cta-final {
+  margin-bottom: 48px;
+}
+
+.cta-final__inner {
+  max-width: 1113px;
+  margin: 0 auto;
+  background: var(--color-cta-bg);
+  border-radius: 20px;
+  box-shadow: var(--shadow-panel);
+  padding: 32px 24px 40px;
+  text-align: center;
+}
+
+.cta-final__eyebrow {
+  margin: 0 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2.8px;
+  color: var(--color-primary);
+}
+
+.cta-final__title {
+  margin: 0 0 16px;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 38px;
+  max-width: 818px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-final__sub {
+  margin: 0 auto 32px;
+  max-width: 623px;
+  font-size: 17px;
+  color: var(--color-faq-intro);
+}
+
+.cta-final__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn--ghost {
+  background: #fff;
+  color: #000;
+  border: 1px solid transparent;
+  min-width: 184px;
+}
+
+.btn--ghost:hover {
+  border-color: var(--color-border);
+}
+
+/* Rodapé */
+.footer {
+  border-top: 1px solid rgba(170, 170, 170, 0.5);
+  background: #fff;
+}
+
+.footer__text {
+  margin: 0;
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-footer);
+}
+
+/* Toast fixo para feedback de ações (fluxo app demo) */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  max-width: min(420px, calc(100% - 32px));
+  padding: 14px 20px;
+  background: #1a1a1a;
+  color: #fafafa;
+  font-size: 14px;
+  line-height: 1.4;
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.toast.toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+/* Responsivo: tablet */
+@media (max-width: 1100px) {
+  .features {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Duas colunas */
+  }
+  .modules__grid {
+    grid-template-columns: 1fr; /* Uma coluna */
+  }
+  .hero__grid {
+    grid-template-columns: 1fr; /* Empilha herói */
+  }
+}
+
+/* Responsivo: mobile */
+@media (max-width: 640px) {
+  .header {
+    flex-direction: column; /* Empilha header */
+    align-items: stretch;
+    border-radius: 24px;
+  }
+  .header__nav {
+    justify-content: center;
+  }
+  .features {
+    grid-template-columns: 1fr; /* Uma coluna */
+  }
+  .hero__badge-text {
+    white-space: normal; /* Permite quebra */
+    text-align: center;
+  }
+  .literature__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .literature__tags {
+    justify-content: flex-start;
+  }
+}
+
+/* Quem prefere menos movimento: menos animação */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .toast,
+  .feature-card--link,
+  .btn,
+  .module-card--highlight {
+    transition: none !important;
+    animation: none !important;
+  }
+}
