@@ -116,7 +116,7 @@ img {
 .page__blob {
   position: absolute; /* Posicionamento livre */
   border-radius: 174px; /* Bordas bem arredondadas */
-  filter: blur(75px); /* Desfoque forte */
+  filter: blur(70px); /* Desfoque forte */
   opacity: 0.55; /* Transparência */
 }
 
@@ -145,7 +145,7 @@ img {
   max-width: var(--max-width); /* Limita largura */
   margin: 0 auto; /* Centraliza horizontalmente */
   padding: 5px 24px 0; /* Espaço externo superior e laterais */
-  padding-top: 80px; /* ajusta conforme altura real do header */
+  padding-top: 135px; /* ajusta conforme altura real do header */
 }
 
 /* Barra de topo */
@@ -154,21 +154,20 @@ img {
   align-items: center; /* Alinha verticalmente ao centro */
   justify-content: space-between; /* Espaça logo, nav e ícone */
   gap: 16px; /* Espaço mínimo entre itens */
-  padding: 0 8px; /* Respiro interno */
   margin-bottom: 48px; /* Separa do herói */
   background: rgba(250, 250, 250, 0); /* Fundo levemente translúcido */
-  border-radius: 157px; /* Formato “pílula” longa */
-  min-height: 40px; /* Altura mínima da barra */
-
-}
-.header {
+  border-radius: 80px; /* Formato “pílula” longa */
+  min-height: 50px; /* Altura mínima da barra */
   position: fixed;
-  top: 20px; /* mantém aquele espacinho elegante do topo */
+  top: 5px; /* mantém aquele espacinho elegante do topo */
   left: 50%;
   transform: translateX(-50%); /* centraliza certinho */
-  width: calc(85% - 48px); /* respeita o padding lateral */
-  z-index: 999;
-  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: calc(1120px + 42px); /* soma do padding lateral */
+  padding: 0 24px;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+  box-sizing: border-box;
 }
 
 /* Grupo marca + texto (link para o topo da página) */
@@ -216,17 +215,24 @@ img {
   margin: 0; /* Remove margem de parágrafo */
   padding: 10px; /* Espaço interno do Figma */
   font-size: 14px; /* Tamanho do texto */
-  font-weight: 500; /* Medium */
+  font-weight: 450; /* Medium */
+  letter-spacing: 0px;
+  word-spacing: -4px;
+  
 }
 
 /* Parte em negrito do nome */
 .header__title-strong {
-  font-weight: 600; /* SemiBold */
+  font-weight: 800; /* SemiBold */
+  background-color: #3d64c4; /* Azul do gradiente */
+  -webkit-background-clip: text; /* Recorte do gradiente no texto (WebKit) */
+  background-clip: text; /* Padrão */
+  color: transparent; /* Deixa ver o gradiente */
 }
 
 /* Navegação central */
 .header__nav {
-  display: flex; /* Links em linha */
+  display: fixed; /* Links em linha */
   gap: 5px; /* Espaço entre pills */
   flex-wrap: wrap; /* Quebra em telas estreitas */
 }
@@ -332,18 +338,19 @@ img {
   display: inline-flex; /* Largura conforme conteúdo */
   align-items: center;
   justify-content: center;
-  min-height: 32px;
-  padding: 0 10px;
+  min-height: 29px;
+  padding: 0 14px;
   margin-bottom: 48px; /* Distância até o grid */
   background: var(--color-primary-soft);
-  border-radius: 49px;
+  border-radius: 100px;
+  width: 307px;
 }
 
 /* Texto do selo */
 .hero__badge-text {
   margin: 0;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
   letter-spacing: 1.2px;
   color: var(--color-badge-text);
   white-space: nowrap; /* Mantém uma linha em desktop */
@@ -360,25 +367,32 @@ img {
 
 /* Coluna de texto */
 .hero__copy {
-  max-width: 546px; /* Limita largura do bloco de texto */
+  max-width: 478px; /* Limita largura do bloco de texto */
 }
 
 /* Título principal */
 .hero__title {
   margin: 0 0 17px; /* Margem inferior */
-  font-size: clamp(40px, 5vw, 68px); /* Responsivo entre 40 e 68px */
-  font-weight: 600;
-  line-height: 1.05; /* Entrelinhas compacta */
-}
+  font-size: 70px; /* Responsivo entre 40 e 68px */
+  font-weight: 800;
+  line-height: 0.9; /* Entrelinhas compacta */
+  height: 311px;
+  letter-spacing: -5px;
+  width: 435px;
+
 
 /* Cada linha do título em bloco */
 .hero__title-line {
-  display: block; /* Quebra linha */
+  display:inline-flex; /* Quebra linha */
+  margin-top: 8;
+  max-width: 12ch;
+  font-display: auto;
+}
 }
 
 /* Palavra com gradiente */
 .hero__title-gradient {
-  background: linear-gradient(180deg, #3d64c4 75.48%, #1ecfd5 98.08%);
+  background: linear-gradient(110deg, #3d64c4 75.48%, #1ecfd5 98.08%);
   -webkit-background-clip: text; /* Recorte do gradiente no texto (WebKit) */
   background-clip: text; /* Padrão */
   color: transparent; /* Deixa ver o gradiente */
@@ -399,6 +413,7 @@ img {
   overflow: hidden; /* Arredonda conteúdo interno */
   min-height: 350px;
   background: #fff; /* Fallback atrás da imagem */
+  left: 5%;
 }
 
 /* Imagem base do mockup */
@@ -449,7 +464,7 @@ img {
 /* Rótulos absolutos sobre o mockup (posições aproximadas do Dev Mode) */
 .hero__mockup-label {
   position: absolute;
-  top: 11%;
+  top: 5%;
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
@@ -515,12 +530,12 @@ img {
 
 /* Botão base */
 .btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
   min-height: 54px;
-  padding: 13px 12px;
+  padding: 20px 12px;
   border-radius: 16px;
   font-size: 14px;
   font-weight: 600;
@@ -528,7 +543,7 @@ img {
 }
 
 .btn:hover {
-  transform: translateY(-1px); /* Leve elevação */
+  transform: translateY(-3px); /* Leve elevação */
 }
 
 .btn:active {
@@ -553,8 +568,8 @@ img {
   border: 1px solid var(--color-border);
   background: #fff;
   color: var(--color-dark);
-  border-radius: 17px;
-  min-width: 113px;
+  border-radius: 20px;
+  min-width: 171px;
 }
 
 /* Ícone dentro do botão */
@@ -651,8 +666,10 @@ img {
 /* Cabeçalho de seção reutilizável */
 .section-head {
   text-align: center;
-  max-width: 1013px;
-  margin: 0 auto 40px;
+  max-width: 730px;
+  margin: 0 auto 50px;
+  padding: 18px;
+   
 }
 
 .section-head--narrow {
@@ -691,7 +708,7 @@ img {
   margin: 0 auto;
   max-width: 751px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-section);
 }
 
@@ -850,7 +867,7 @@ img {
   background: #fff;
   border-radius: 26px;
   box-shadow: var(--shadow-panel);
-  padding: 24px 32px;
+  padding: 32px 32px;
   min-height: 159px;
 }
 
@@ -1128,6 +1145,12 @@ img {
 .footer {
   border-top: 1px solid rgba(170, 170, 170, 0.5);
   background: #fff;
+
+}
+.footer__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 16px 24px;
 }
 
 .footer__text {
